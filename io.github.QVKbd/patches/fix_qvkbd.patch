@@ -1,0 +1,20 @@
+--- ../QVKbd.pro	2023-11-02 16:35:22.463367000 +0800
++++ ../QVKbd.pro	2023-11-02 16:46:37.610944550 +0800
+@@ -36,4 +36,17 @@
+ 
+ 	INSTALLS += target
+ 	target.path = $$BINDIR
++
++	DESKTOP_FILE = ./qvkbd.desktop
++	system("echo '[Desktop Entry]' > $$DESKTOP_FILE")
++	system("echo 'Type=Application' >> $$DESKTOP_FILE")
++	system("echo 'Name=qvkbd' >> $$DESKTOP_FILE")
++	system("echo 'Comment=qvkbd.' >> $$DESKTOP_FILE")
++	system("echo 'Exec=qvkbd' >> $$DESKTOP_FILE")
++	system("echo 'Terminal=false' >> $$DESKTOP_FILE")
++	system("echo 'Categories=Utility;' >> $$DESKTOP_FILE")
++
++	desktopfile.files = qvkbd.desktop
++ 	desktopfile.path = $$PREFIX/share/applications
++	INSTALLS += desktopfile
+ }
