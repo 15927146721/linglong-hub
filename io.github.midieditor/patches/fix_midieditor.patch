@@ -1,0 +1,24 @@
+--- ../midieditor.pro	2023-11-02 15:53:28.311884000 +0800
++++ ../midieditor.pro	2023-11-02 15:52:02.213421000 +0800
+@@ -88,3 +88,21 @@
+     MOC_DIR = .tmp
+     ICON = midieditor.icns
+ }
++
++COMMON_DIR = $$PREFIX
++
++target.path = $${COMMON_DIR}/bin # /opt/$${TARGET}/bin
++INSTALLS += target
++
++DESKTOP_FILE = ./MidiEditor.desktop
++system("echo '[Desktop Entry]' > $$DESKTOP_FILE")
++system("echo 'Type=Application' >> $$DESKTOP_FILE")
++system("echo 'Name=MidiEditor' >> $$DESKTOP_FILE")
++system("echo 'Comment=MidiEditor.' >> $$DESKTOP_FILE")
++system("echo 'Exec=MidiEditor' >> $$DESKTOP_FILE")
++system("echo 'Terminal=false' >> $$DESKTOP_FILE")
++system("echo 'Categories=Utility;' >> $$DESKTOP_FILE")
++
++desktop.files += $$DESKTOP_FILE
++desktop.path = $${COMMON_DIR}/share/applications
++INSTALLS += desktop
