@@ -1,0 +1,37 @@
+--- ../meson.build	2023-11-02 08:58:19.018889000 +0800
++++ ../meson.build	2023-11-02 08:53:40.946483000 +0800
+@@ -14,7 +14,7 @@
+ )
+ 
+ add_project_arguments(
+-  '-Wno-implicit-fallthrough',
++  '-Wno--fallthrough',
+   '-Wno-dangling-else',
+   '-Wno-newline-eof',
+   '-Wno-unknown-pragmas',
+@@ -34,6 +34,19 @@
+ subdir('lib')
+ subdir('res')
+ 
++
++desktop_contents = '''
++[Desktop Entry]
++Name=orbvis
++Exec=orbvis
++Type=Application
++Categories=Utility;
++'''
++
++configure_file(output: 'orbvis.desktop',  configuration: {'DESKTOP_CONTENTS': desktop_contents})
++
++install_data('/source/build/orbvis.desktop', install_dir:  'share/applications')
++
+ executable(
+   'orbvis',
+   orbvis_sources,
+@@ -42,4 +55,5 @@
+   include_directories : [orbvis_incdir, lib_incdir],
+   dependencies : deps,
+   install : true,
++  install_dir: 'bin'
+ )
